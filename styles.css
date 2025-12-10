@@ -1,0 +1,727 @@
+/* -------------------- GENERALES -------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #150B27;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: 'SF Pro Display', sans-serif;
+
+    max-width: 430px;
+    margin: 0 auto;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.home {
+    z-index: 1;
+    display: none;
+    overflow: hidden; /* evita scroll por defecto */
+}
+
+.home.scroll-activo {
+    overflow-y: auto !important;
+    padding-bottom: 100px; /* por la barra inferior */
+}
+
+
+
+.pantalla {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    color: white;
+    display: none;
+}
+
+/* -------------------- SPLASH -------------------- */
+.splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background-color: #150B27;
+    z-index: 9999;
+}
+
+/* ⭐⭐ ESTA ES LA ANIMACIÓN QUE FALTABA ⭐⭐ */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    40% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.logo {
+    width: 180px;
+    opacity: 0;
+    animation: fadeInOut 3s ease-in-out forwards;
+}
+
+/* -------------------- HOME -------------------- */
+.title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 52px;
+    padding-left: 32px;
+    margin-top: 50px;
+}
+
+.subtitle {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-left: 32px;
+}
+
+/* VIDRIO */
+.glass {
+    width: 100%;
+    max-width: 348px;
+    height: 50px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    margin: 0 auto 12px;
+
+    background: rgba(142, 92, 203, 0.15);
+    border: 1px solid rgba(142, 92, 203, 0.14);
+
+    box-shadow:
+        0px 1px 4px rgba(142, 92, 203, 0.27),
+        inset 0px 4px 5px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(15px);
+    font-size: 20px;
+}
+
+.btn-main {
+    width: 100%;
+    max-width: 366px;
+    height: 54px;
+    background: #5219BD;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    display: block;
+    margin: 20px auto 52px;
+}
+
+/* -------------------- COLOR PICKER -------------------- */
+#colorWheel {
+    display: block;
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+}
+
+/* -------------------- NAV INFERIOR -------------------- */
+#bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 430px;
+    height: 78px;
+    background: #5219BD;
+    border-radius: 25px 25px 0 0;
+    justify-content: space-around;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.nav-item img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.5;
+    transition: 0.3s ease;
+}
+
+.nav-item.active img {
+    opacity: 1;
+}
+
+
+/* -------------------- COLOR PICKER -------------------- */
+
+.color-picker-wrapper {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 32px;
+}
+
+#colorWheel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+}
+
+/* circulito que marca el color elegido */
+#colorIndicator {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    display: none;          /* se muestra solo al elegir */
+    pointer-events: none;   /* no bloquea clicks en el canvas */
+}
+
+
+
+/* ========== PANTALLA MODOS ========== */
+
+.modos {
+    display: none;
+}
+
+/* Barra superior */
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.back-icon {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.title-modos {
+font-size: 40px;
+    font-weight: 700;
+    margin: 0 auto;
+    text-align: center;
+    flex: 1;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 52px;
+    margin-top: 50px;
+}
+
+/* Subtítulo */
+.modos .subtitle {
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 32px;
+    margin-top: 2px;
+}
+
+/* TARJETAS DE MODO */
+.modo-card {
+    width: 348px;
+    height: 97px;
+    background: rgba(82, 25, 189, 0.15);
+    border: 1px solid rgba(82, 25, 189, 0.14);
+    backdrop-filter: blur(14px);
+
+    border-radius: 14px;
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-left: 20px;
+
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        0px 1px 4px rgba(82, 25, 189, 0.27),
+        inset 0px 4px 5px rgba(0, 0, 0, 0.16);
+}
+
+.modo-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.9;
+}
+
+
+/* ======== PANTALLA MODO PERSONA ======== */
+
+.modo-persona {
+    display: none;
+}
+
+#volverModosPersona {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+/* Subtítulo */
+.subtitle-persona {
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 32px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+/* TARJETAS PERSONA */
+.persona-card {
+    width: 327px;
+    height: 65px;
+
+    border-radius: 13px;
+    margin: 0 auto 15px;
+
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Colores vidrio exactos */
+.glass-p1 { background: rgba(142, 92, 203, 0.20); }
+.glass-p2 { background: rgba(25, 126, 189, 0.20); }
+.glass-p3 { background: rgba(82, 25, 189, 0.20); }
+.glass-p4 { background: rgba(189, 25, 120, 0.20); }
+.glass-p5 { background: rgba(25, 30, 189, 0.20); }
+
+/* Texto */
+.card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+}
+
+.card-desc {
+    font-size: 20px;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* -------------------- MODO PERSONA – DETALLE -------------------- */
+
+.modo-detalle {
+    box-sizing: border-box;
+    display: none;          
+}
+
+.modo-detalle #modoTitulo {
+    margin: 0 auto;
+    text-align: center;
+    flex: 1;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 52px;
+    margin-top: 50px;
+}
+
+.modo-detalle #modoDescripcion {
+font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    padding-left: 32px;
+    margin-top: 2px;
+
+}
+
+/* círculo con degradado y animación de respiración */
+#circuloRespiracion {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    margin: 24px auto 32px;
+    background: radial-gradient(circle at 0% 0%,
+        #BD1978 0%,
+        #5219BD 48%,
+        #191EBD 100%);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+    transform: scale(0.9);
+}
+
+/* cuando el modo está activo, respira */
+#circuloRespiracion.activo {
+    animation: breath 3.6s ease-in-out infinite;
+}
+
+@keyframes breath {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 36px rgba(82, 25, 189, 0.7);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* las tarjetas de persona son clickeables */
+.modo-persona .persona-card {
+    cursor: pointer;
+}
+
+
+
+.modo-activo-card {
+    width: 348px;
+    height: 100px;
+    margin: 0 auto 25px;
+    padding: 16px;
+    border-radius: 13px;
+
+    display: flex;
+    gap: 14px;
+    align-items: center;
+
+    background: rgba(82, 25, 189, 0.20);
+    border: 1px solid rgba(82, 25, 189, 0.35);
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0px 1px 4px rgba(82, 25, 189, 0.35),
+        inset 0px 4px 5px rgba(0,0,0,0.18);
+}
+
+.modo-activo-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.modo-activo-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modo-activo-desc {
+    font-size: 20px;
+    margin: 2px 0 6px;
+}
+
+.modo-activo-tiempo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reloj-icon {
+    width: 16px;
+    opacity: 0.8;
+}
+
+
+
+
+
+
+.activo-box {
+    width: 348px;
+    height: 559px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 13px;
+
+    background: rgba(82, 25, 189, 0.20);
+    border: 1px solid rgba(82, 25, 189, 0.35);
+    backdrop-filter: blur(15px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icono-circulo {
+    position: relative;
+    width: 199px;
+    height: 199px;
+    margin-bottom: 20px;
+}
+
+.circulo-vidrio {
+    position: absolute;
+    width: 199px;
+    height: 199px;
+    border-radius: 50%;
+    background: rgba(82, 25, 189, 0.20);
+    border: 1px solid rgba(82, 25, 189, 0.32);
+    backdrop-filter: blur(10px);
+}
+
+#iconoModoActivoGrande {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modo-info {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.modo-info p {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.label {
+    font-weight: 600;
+}
+
+.btn-stop {
+    background: #BD1978 !important;
+}
+
+.detalle-datos p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 6px 0;
+}
+
+.detalle-datos .label {
+    font-weight: 600;
+}
+
+.detalle-datos .valor {
+    font-weight: 400;
+    opacity: 0.9;
+    text-align: right;
+}
+
+
+
+
+
+/* TARJETAS MASCOTA */
+.mascota-card {
+    width: 327px;
+    height: 65px;
+    border-radius: 13px;
+    margin: 0 auto 15px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.glass-m1 { background: rgba(32, 60, 130, 0.25); }
+.glass-m2 { background: rgba(56, 20, 89, 0.25); }
+.glass-m3 { background: rgba(20, 50, 130, 0.25); }
+.glass-m4 { background: rgba(130, 20, 60, 0.25); }
+.glass-m5 { background: rgba(40, 20, 130, 0.25); }
+
+/* CÍRCULO DETALLE MASCOTA */
+.circulo-mascota {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    margin: 24px auto 32px;
+    background: radial-gradient(circle at 0% 0%,
+        #1A5FD1 0%,
+        #5219BD 50%,
+        #8B1EC9 100%);
+    box-shadow: 0 0 24px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+}
+
+.circulo-mascota.activo {
+    animation: breathMascota 3.6s ease-in-out infinite;
+}
+
+#modoMascotaDescripcion{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    padding-left: 32px;
+    margin-top: 2px;
+}
+
+@keyframes breathMascota {
+    0%   { transform: scale(0.9); }
+    50%  { transform: scale(1.05); box-shadow: 0 0 36px rgba(82,25,189,.7); }
+    100% { transform: scale(0.9); }
+}
+
+
+
+/* TARJETAS BEBÉ */
+.bebe-card {
+    width: 327px;
+    height: 65px;
+    border-radius: 13px;
+    margin: 0 auto 15px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.glass-b1 { background: rgba(20, 80, 200, 0.25); }
+.glass-b2 { background: rgba(120, 40, 180, 0.25); }
+.glass-b3 { background: rgba(200, 40, 90, 0.25); }
+.glass-b4 { background: rgba(40, 140, 200, 0.25); }
+
+/* CÍRCULO DETALLE BEBÉ */
+.circulo-bebe {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    margin: 24px auto 32px;
+    background: radial-gradient(circle at 0% 0%,
+        #FFC542 0%,
+        #FF6F91 50%,
+        #845EC2 100%);
+    box-shadow: 0 0 24px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+}
+
+.circulo-bebe.activo {
+    animation: breathBebe 3.6s ease-in-out infinite;
+}
+
+#modoBebeDescripcion{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    padding-left: 32px;
+    margin-top: 2px;
+}
+
+@keyframes breathBebe {
+    0%   { transform: scale(0.9); }
+    50%  { transform: scale(1.05); box-shadow: 0 0 36px rgba(255,200,0,.7); }
+    100% { transform: scale(0.9); }
+}
+
+.toast {
+    z-index: 1;
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.toast.mostrar {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px);
+}
+
+
+/* ============= PANTALLA DE NOTIFICACIÓN ============= */
+
+.notificacion {
+    display: none;
+    background: linear-gradient(
+        180deg,
+        #191EBD 0%,
+        rgba(21, 11, 39, 0.3) 100%
+    );
+    text-align: center;
+    padding-top: 9px;
+}
+
+.notif-content {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 14px 20px;
+}
+
+.notif-icono {
+    position: relative;
+    width: 199px;
+    height: 199px;
+    margin: 0 auto 20px;
+}
+
+.notif-circulo {
+    position: absolute;
+    width: 199px;
+    height: 199px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.notif-icon {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.notif-estado {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.notif-descripcion {
+    font-size: 20px;
+    opacity: 0.9;
+    width: 80%;
+    margin: 0 auto 40px;
+}
+
+.notificacion .title-modos {
+    display: none !important;
+}
+
+#barNot{
+    padding: 56px 20px;
+}
+
+
+

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMO</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- SF Pro -->
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============= SPLASH ============= -->
+    <div class="splash pantalla">
+        <img src="imgs/logo_lumo.png" class="logo" alt="LUMO Logo">
+    </div>
+
+    <!-- ============= HOME ============= -->
+    <div class="home pantalla">
+
+        <h1 class="title">Hola, Zaíra!</h1>
+
+        <div id="home-modo-activo" class="modo-activo-card" style="display:none;">
+
+    <div class="modo-activo-icon">
+        <img id="iconoModoActivo" src="" alt="icono modo">
+    </div>
+
+    <div class="modo-activo-info">
+        <p id="modoActivoTitulo" class="modo-activo-title">Modo activo</p>
+        <p id="modoActivoDesc" class="modo-activo-desc"></p>
+
+        <div class="modo-activo-tiempo">
+            <img src="imgs/reloj.svg" class="reloj-icon">
+            <span id="modoActivoTiempo">0s</span>
+        </div>
+    </div>
+</div>
+
+        <h2 class="subtitle">Modos recientes</h2>
+
+<div id="modoReciente1" class="glass">—</div>
+<div id="modoReciente2" class="glass">—</div>
+
+
+        <button class="btn-main">Seleccionar modo</button>
+
+        <h2 class="subtitle">Personaliza tu lámpara</h2>
+
+<div class="color-picker-wrapper">
+  <canvas id="colorWheel"></canvas>
+  <div id="colorIndicator"></div>
+</div>
+
+<button class="btn-main" id="guardarColor">Guardar</button>
+
+</div>
+
+
+<!-- ============= PANTALLA DE MODOS ============= -->
+<div class="modos pantalla">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" id="volverHome" class="back-icon">
+        <h1 class="title-modos">Modos</h1>
+    </div>
+
+    <h2 class="subtitle">Selecciona un modo</h2>
+
+    <div class="modo-card" id="modoPersonaCard">
+        <img src="imgs/persona.svg" class="modo-icon">
+        <span>Persona</span>
+    </div>
+
+    <div class="modo-card">
+        <img src="imgs/mascota.svg" class="modo-icon">
+        <span>Mascota</span>
+    </div>
+
+    <div class="modo-card">
+        <img src="imgs/bebe.svg" class="modo-icon">
+        <span>Bebé</span>
+    </div>
+
+</div>
+
+
+<!-- ============= MODO PERSONA ============= -->
+<div class="modo-persona pantalla">
+    
+    <div class="top-bar">
+        <img src="imgs/back.svg" class="back-icon" id="volverModosPersona">
+        <h1 class="title-modos">Modo Persona</h1>
+    </div>
+
+    <h2 class="subtitle-persona">Selecciona un modo</h2>
+
+    <div class="persona-card glass-p1">
+        <div class="left">
+            <p class="card-title">Respiración</p>
+            <p class="card-desc">Luz que acompaña tu respiración</p>
+        </div>
+    </div>
+
+    <div class="persona-card glass-p2">
+        <div class="left">
+            <p class="card-title">Antiestrés</p>
+            <p class="card-desc">Transiciones de colores suaves</p>
+        </div>
+    </div>
+
+    <div class="persona-card glass-p3">
+        <div class="left">
+            <p class="card-title">Concentración</p>
+            <p class="card-desc">Luz estable y enfocada</p>
+        </div>
+    </div>
+
+    <div class="persona-card glass-p4">
+        <div class="left">
+            <p class="card-title">Energía</p>
+            <p class="card-desc">Impulsos de luz cálida</p>
+        </div>
+    </div>
+
+    <div class="persona-card glass-p5">
+        <div class="left">
+            <p class="card-title">Sueño</p>
+            <p class="card-desc">Ciclo de luz tenue</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="modo-detalle pantalla" id="modo-detalle">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" id="volverPersona" class="back-icon">
+        <h1 class="title-modos" id="modoTitulo"></h1>
+    </div>
+
+    <p id="modoDescripcion" class="modo-desc"></p>
+
+    <div id="circuloRespiracion"></div>
+
+    <button id="botonModo" class="btn-main">Iniciar modo</button>
+
+</div>
+
+
+<!-- ============= MODO ACTIVO DETALLE ============= -->
+<div class="modo-activo-detalle pantalla" style="display:none;">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" id="volverHomeDesdeActivo" class="back-icon">
+        <h1 id="tituloModoActivoDetalle" class="title-modos"></h1>
+    </div>
+
+    <div class="activo-box">
+
+        <div class="icono-circulo">
+            <div class="circulo-vidrio"></div>
+            <img id="iconoModoActivoGrande" src="">
+        </div>
+
+        <div class="modo-info">
+
+            <div id="modoDetalleDatos" class="detalle-datos"></div>
+
+
+
+        </div>
+
+        <button id="detenerModoDetalle" class="btn-main btn-stop">Detener modo</button>
+    </div>
+</div>
+
+
+
+
+<!-- ============= MODO MASCOTA ============= -->
+<div class="modo-mascota pantalla">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" class="back-icon" id="volverModosMascota">
+        <h1 class="title-modos">Modo Mascota</h1>
+    </div>
+
+    <h2 class="subtitle-persona">Selecciona un modo</h2>
+
+    <div class="mascota-card glass-m1" data-id="calma">
+        <p class="card-title">Calma</p>
+        <p class="card-desc">Luz y vibración suave</p>
+    </div>
+
+    <div class="mascota-card glass-m2" data-id="compania">
+        <p class="card-title">Compañía</p>
+        <p class="card-desc">Detecta sonidos y movimientos</p>
+    </div>
+
+    <div class="mascota-card glass-m3" data-id="juego">
+        <p class="card-title">Juego</p>
+        <p class="card-desc">Detecta sonidos y reacciona</p>
+    </div>
+
+    <div class="mascota-card glass-m4" data-id="alerta">
+        <p class="card-title">Alerta</p>
+        <p class="card-desc">Detecta cambios y avisa</p>
+    </div>
+
+    <div class="mascota-card glass-m5" data-id="noche">
+        <p class="card-title">Noche</p>
+        <p class="card-desc">Luz muy suave</p>
+    </div>
+
+</div>
+
+<!-- ============= DETALLE MODO MASCOTA ============= -->
+<div class="modo-mascota-detalle pantalla" id="modo-mascota-detalle">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" class="back-icon" id="volverMascota">
+        <h1 class="title-modos" id="modoMascotaTitulo"></h1>
+    </div>
+
+    <p id="modoMascotaDescripcion" class="modo-desc"></p>
+
+    <div id="circuloMascota" class="circulo-mascota"></div>
+
+    <button id="botonModoMascota" class="btn-main">Iniciar modo</button>
+
+</div>
+
+
+
+
+<!-- ============= MODO BEBÉ ============= -->
+<div class="modo-bebe pantalla">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" id="volverModosBebe" class="back-icon">
+        <h1 class="title-modos">Modo Bebé</h1>
+    </div>
+
+    <h2 class="subtitle-persona">Selecciona un modo</h2>
+
+    <div class="bebe-card glass-b1" data-id="tranquilo">
+        <p class="card-title">Tranquilo</p>
+        <p class="card-desc">Luz suave y ambiente relajado</p>
+    </div>
+
+    <div class="bebe-card glass-b2" data-id="activo">
+        <p class="card-title">Activo</p>
+        <p class="card-desc">Detecta movimientos e ilumina</p>
+    </div>
+
+    <div class="bebe-card glass-b3" data-id="inquieto">
+        <p class="card-title">Inquieto</p>
+        <p class="card-desc">Luz y vibración en llantos</p>
+    </div>
+
+    <div class="bebe-card glass-b4" data-id="atencion">
+        <p class="card-title">Atención</p>
+        <p class="card-desc">Reacción a ruidos y movimientos</p>
+    </div>
+
+</div>
+
+
+<!-- ============= DETALLE MODO BEBÉ ============= -->
+<div class="modo-bebe-detalle pantalla" id="modo-bebe-detalle">
+
+    <div class="top-bar">
+        <img src="imgs/back.svg" id="volverBebe" class="back-icon">
+        <h1 class="title-modos" id="modoBebeTitulo"></h1>
+    </div>
+
+    <p id="modoBebeDescripcion" class="modo-desc"></p>
+
+    <div id="circuloBebe" class="circulo-bebe"></div>
+
+    <button id="botonModoBebe" class="btn-main">Iniciar modo</button>
+
+</div>
+
+
+<div id="toast" class="toast oculto">
+    <p id="toast-text"></p>
+</div>
+
+<!-- ============= NOTIFICACIÓN ============= -->
+<div class="notificacion pantalla">
+
+    <div class="top-bar" id="barNot">
+        <img src="imgs/back.svg" id="volverNotificaciones" class="back-icon">
+        <h1 class="title-modos">Mascota</h1>
+    </div>
+
+    <div class="notif-content">
+        <div class="notif-icono">
+            <div class="notif-circulo"></div>
+            <img src="imgs/mascota.svg" class="notif-icon">
+        </div>
+
+        <h2 class="notif-estado">Activo</h2>
+
+        <p class="notif-descripcion">
+            Se activó el modo calma debido a tal y tal cosa
+        </p>
+
+        <button id="btnDetenerNotif" class="btn-main btn-stop">
+            Detener modo
+        </button>
+    </div>
+
+</div>
+
+
+
+
+    <!-- ============= BARRA INFERIOR ============= -->
+<div id="bottom-nav">
+<div class="nav-item" id="navHome">
+    <img src="imgs/home.svg" class="nav-icon">
+</div>
+
+
+
+<div class="nav-item" id="nav-modos">
+    <img src="imgs/modos.svg" class="nav-icon">
+</div>
+
+
+    <div class="nav-item">
+        <img src="imgs/notificaciones.svg" class="nav-icon">
+    </div>
+</div>
+
+
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDN14oYbh_s7dZeRRhg5-NpslTPZwm30v0",
+        authDomain: "lumo-53860.firebaseapp.com",
+        databaseURL: "https://lumo-53860-default-rtdb.firebaseio.com",
+        projectId: "lumo-53860",
+        storageBucket: "lumo-53860.firebasestorage.app",
+        messagingSenderId: "537806228730",
+        appId: "1:537806228730:web:cebb769318c942ceed0d43"
+    };
+
+    // Firebase listo
+    window.firebaseApp = initializeApp(firebaseConfig);
+    window.db = getDatabase(window.firebaseApp);
+</script>
+
+   <script type="module" src="script.js"></script>
+</body>
+</html>
